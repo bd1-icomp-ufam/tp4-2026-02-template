@@ -1,0 +1,2 @@
+-- Projeto fisico: indices justificados pelas consultas (Secao 6 do enunciado).
+-- Cada indice deve ser justificado no relatorio pela consulta que o motiva.

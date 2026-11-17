@@ -1,0 +1,2 @@
+-- Projeto logico: esquema relacional derivado do diagrama EER (Secao 5 do enunciado).
+-- Crie as tabelas em ordem que respeite as chaves estrangeiras, ou adicione as FKs com ALTER TABLE ao final.

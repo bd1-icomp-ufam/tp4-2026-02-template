@@ -1,0 +1,1 @@
+-- Restricoes semanticas (gatilhos e funcoes) que o DDL nativo nao expressa (Secao 5.4 do enunciado).

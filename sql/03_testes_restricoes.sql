@@ -1,0 +1,2 @@
+-- Para cada restricao semantica de sql/01b_restricoes.sql (Secao 5.4), um comando aceito e um rejeitado.
+-- Este arquivo NAO e executado pelo verificador: os comandos rejeitados geram erro por definicao.

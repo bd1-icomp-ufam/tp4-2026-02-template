@@ -1,0 +1,2 @@
+dominio: <um de: corrida, comida, hospedagem, freelancers, recarga, frete>
+integrantes: <Nome Sobrenome>; <Nome Sobrenome (se for dupla)>

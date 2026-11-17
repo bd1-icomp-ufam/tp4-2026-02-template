@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: tp4
+      POSTGRES_PASSWORD: tp4
+      POSTGRES_DB: tp4
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tp4 -d tp4"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    build: .
+    image: tp4
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGHOST: db
+      PGUSER: tp4
+      PGPASSWORD: tp4
+      PGDATABASE: tp4
+    volumes:
+      - .:/app
+volumes:
+  pgdata:
