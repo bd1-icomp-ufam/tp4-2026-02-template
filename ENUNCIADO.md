@@ -172,8 +172,9 @@ O repositório-template traz um verificador, executado por `make test`, que conf
 
 - `sql/01_esquema.sql` executa sem erro em um banco PostgreSQL 16 vazio;
 - o povoamento executa e atende ao volume mínimo da seção 7.1;
-- cada arquivo de consulta executa e retorna ao menos uma linha;
-- os arquivos obrigatórios existem (diagrama exportado, arquivo-fonte do diagrama, relatório em PDF, `dominio.txt`).
+- `sql/02_indices.sql` executa sem erro sobre o banco povoado;
+- os arquivos `q01` a `q09` e `p01` a `p05` existem, cada um é uma única instrução `SELECT` e retorna ao menos uma linha;
+- os arquivos obrigatórios existem (diagrama exportado, arquivo-fonte do diagrama, relatório em PDF, `dominio.txt`, `sql/03_testes_restricoes.sql`).
 
 O verificador **não avalia** o diagrama EER, as justificativas nem a adequação do esquema ao domínio. Passar no verificador é condição para a nota dos itens correspondentes, mas não a determina.
 
@@ -219,6 +220,8 @@ O relatório é um arquivo PDF, `docs/relatorio.pdf`, com as seções:
 ```
 
 O repositório deve funcionar do zero com a sequência `make up`, `make esquema`, `make dados`, `make indices`, `make consultas` e `make test`, sem depender de caminho absoluto, de configuração manual não documentada ou de pacote instalado fora dos contêineres.
+
+O arquivo `dominio.txt` tem duas linhas: `dominio:` seguido de um identificador (`corrida`, `comida`, `hospedagem`, `freelancers`, `recarga` ou `frete`) e `integrantes:` seguido de um ou dois nomes separados por `;`.
 
 ## 11. Entrega
 
