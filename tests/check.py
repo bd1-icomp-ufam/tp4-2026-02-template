@@ -9,7 +9,7 @@ criado vazio e apagado ao final:
   - cada consulta de sql/consultas/ e uma unica instrucao SELECT e retorna ao menos uma linha;
   - os arquivos obrigatorios existem.
 
-NAO avalia o diagrama EER, as justificativas nem a adequacao do esquema ao dominio.
+NAO avalia a especificacao de requisitos, o esquema EER, as justificativas nem a adequacao do esquema ao dominio.
 Uso: make test
 """
 import os
