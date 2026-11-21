@@ -3,27 +3,27 @@ Instituto de Computação
 Introdução a Bancos de Dados — ICC205 — 2026/02
 Docente: Altigran Soares da Silva <alti@icomp.ufam.edu.br>
 
-# Trabalho Prático IV — 20/11/2026
+# Trabalho Prático 4 — 21/11/2026
 # Data da entrega: 10/12/2026 até 23:59
 
 ## 1. Apresentação
 
-Este trabalho consiste na execução de um ciclo completo de projeto de banco de dados, tal como estudado na Unidade IV: levantamento de requisitos, projeto conceitual no modelo entidade-relacionamento estendido (EER), projeto lógico (esquema relacional), projeto físico (índices), povoamento e consultas em SQL sobre o PostgreSQL. O trabalho é dividido em quatro partes:
+Este trabalho consiste na execução de um ciclo completo de projeto de banco de dados, tal como estudado na Unidade IV: especificação dos requisitos, projeto conceitual (esquema no modelo entidade-relacionamento estendido, EER), projeto lógico (esquema relacional), projeto físico (índices), povoamento e consultas em SQL sobre o PostgreSQL. O trabalho é dividido em quatro partes:
 
-- **Parte I — projeto conceitual.** Entidades, relacionamentos, restrições e diagrama EER, na notação de Elmasri e Navathe.
-- **Parte II — projeto lógico.** Mapeamento do EER para um esquema relacional, com o DDL em SQL e as restrições que as cláusulas nativas do DDL não expressam.
+- **Parte I — requisitos e projeto conceitual.** Especificação detalhada dos requisitos do banco de dados e esquema EER (entidades, relacionamentos e restrições), com o seu diagrama na notação de Elmasri e Navathe.
+- **Parte II — projeto lógico.** Mapeamento do esquema EER para um esquema relacional, com o DDL em SQL e as restrições que as cláusulas nativas do DDL não expressam.
 - **Parte III — projeto físico.** Índices justificados pelas consultas, com `EXPLAIN` antes e depois.
 - **Parte IV — povoamento e consultas.** Dados sintéticos gerados por script, as consultas típicas do domínio e cinco consultas propostas pelo estudante.
 
-O que se avalia é o **raciocínio de modelagem**: por que cada tipo de entidade, cada especialização e cada relacionamento existe, e por que cada tabela do esquema relacional tem a forma que tem. Um diagrama correto sem justificativa tem pouco valor; uma decisão de modelagem diferente da esperada, mas justificada e consistente com os requisitos, é aceita.
+O que se avalia é o **raciocínio de modelagem**: por que cada tipo de entidade, cada especialização e cada relacionamento existe, e por que cada tabela do esquema relacional tem a forma que tem. Um esquema correto sem justificativa tem pouco valor; uma decisão de modelagem diferente da esperada, mas justificada e consistente com os requisitos, é aceita.
 
-O trabalho pode ser feito **individualmente ou em dupla** (no máximo duas pessoas). Não há arguição; a autoria é verificada pela consistência entre o relatório, o histórico de commits e o material entregue.
+O trabalho pode ser feito **individualmente ou em dupla** (no máximo duas pessoas).
 
 ## 2. Domínios
 
 Cada estudante ou dupla escolhe **um** dos seis domínios abaixo e comunica a escolha no canal do trabalho até **27/11/2026**, informando os nomes. O mesmo domínio pode ser escolhido por mais de uma equipe: os trabalhos diferem pelas decisões de modelagem.
 
-Os requisitos de cada domínio são **mínimos**. Onde o texto é omisso, a equipe faz suposições razoáveis e as registra na seção 1 do relatório. Os requisitos não esgotam o que pode ser modelado. Nenhuma consulta típica depende da data em que é executada: referências de tempo são relativas aos próprios dados.
+Os requisitos de cada domínio são **mínimos**. Onde o texto é omisso, a equipe faz suposições razoáveis e as registra na especificação de requisitos (item 4.1). Os requisitos não esgotam o que pode ser modelado. Nenhuma consulta típica depende da data em que é executada: referências de tempo são relativas aos próprios dados.
 
 ### 2.1. Corrida por aplicativo
 
@@ -179,28 +179,30 @@ Consultas típicas:
 
 ## 3. Ferramentas
 
-O diagrama EER deve ser feito em **uma das duas ferramentas abaixo. Nenhuma outra é aceita.**
+O esquema EER deve ser desenvolvido usando **uma destas duas ferramentas de projeto conceitual. Nenhuma outra é aceita.**
 
-1. **DBV EER Studio**, aplicação web que roda no navegador, sem instalação: <https://davidbuenov.github.io/dbv-eer-studio/>. Código e licença (MIT): <https://github.com/davidbuenov/dbv-eer-studio>. O arquivo-fonte do diagrama tem extensão `.eer`. A ferramenta gera também um esquema relacional e um DDL a partir do diagrama. Na interface, a aba correspondente tem o rótulo "Modelo Relacional"; o termo correto, usado neste enunciado e no relatório, é **esquema relacional**.
+1. **DBV EER Studio**, aplicação web que roda no navegador, sem instalação: <https://davidbuenov.github.io/dbv-eer-studio/>. Código e licença (MIT): <https://github.com/davidbuenov/dbv-eer-studio>. O arquivo-fonte do esquema tem extensão `.eer`. A ferramenta gera também um esquema relacional e um DDL a partir do esquema EER. Na interface, a aba correspondente tem o rótulo "Modelo Relacional"; o termo correto, usado neste enunciado e no relatório, é **esquema relacional**.
 2. **TerraER 3.14**, aplicação em Java (JAR único, requer Java instalado). Obter **somente** da página de lançamentos do projeto no GitHub: <https://github.com/rterrabh/TerraER/releases/tag/TerraER3.14>. O site `terraer.com.br` não deve ser usado, pois a página de tutoriais continha links alheios ao projeto na data de redação deste enunciado. A ferramenta não gera esquema relacional.
 
-Em ambas, o diagrama segue a notação de Elmasri e Navathe. O DDL gerado pelo DBV EER Studio é **rascunho**: deve ser revisado (tipos de dados, ordem de criação das tabelas, restrições) e o que se entrega e avalia é o DDL revisado, que precisa executar sem erro no PostgreSQL 16 do repositório-template.
+Em ambas, o diagrama do esquema segue a notação de Elmasri e Navathe. O DDL gerado pelo DBV EER Studio é **rascunho**: deve ser revisado (tipos de dados, ordem de criação das tabelas, restrições) e o que se entrega e avalia é o DDL revisado, que precisa executar sem erro no PostgreSQL 16 do repositório-template.
 
-## 4. Parte I — projeto conceitual
+## 4. Parte I — requisitos e projeto conceitual
 
-O projeto conceitual contém:
+A Parte I contém:
 
-**4.1. Entidades.** Lista dos tipos de entidade com atributos (simples, chave, derivados, multivalorados), semântica de cada um e, para subclasses, as superclasses, e para superclasses, as especializações que delas se originam.
+**4.1. Especificação de requisitos.** Documento que especifica, de forma detalhada, os requisitos do banco de dados para o domínio escolhido, ampliando a descrição da seção 2. Deve cobrir: o que a empresa precisa armazenar e para quê; as informações do domínio e o que as distingue umas das outras; os atributos de cada uma, com o tipo de valor e se são obrigatórios; as regras de negócio e as restrições (por exemplo, valores permitidos, o que é obrigatório e o que não pode ocorrer); as consultas típicas da seção 2 e as informações de que cada uma precisa; e as suposições feitas onde a descrição da seção 2 é omissa.
 
-**4.2. Relacionamentos.** Lista dos tipos de relacionamento com atributos, entidades participantes, cardinalidade, restrições de participação (total ou parcial) e semântica.
+**4.2. Entidades.** Lista dos tipos de entidade com atributos (simples, chave, derivados, multivalorados), semântica de cada um e, para subclasses, as superclasses, e para superclasses, as especializações que delas se originam.
 
-**4.3. Diagrama EER**, na notação de Elmasri e Navathe, produzido em uma das ferramentas da seção 3. O diagrama deve refletir fielmente as listas dos itens 4.1 e 4.2.
+**4.3. Relacionamentos.** Lista dos tipos de relacionamento com atributos, entidades participantes, cardinalidade, restrições de participação (total ou parcial) e semântica.
 
-**4.4. Justificativas.** Para cada hierarquia de especialização, a razão de ter sido modelada assim (e não como um atributo de tipo na superclasse); para cada entidade fraca e cada relacionamento de grau maior que dois presentes no diagrama, a razão de terem sido modelados assim.
+**4.4. Esquema EER**, na notação de Elmasri e Navathe, desenvolvido usando uma das ferramentas da seção 3 e apresentado em diagrama, que deve refletir fielmente as listas dos itens 4.2 e 4.3.
+
+**4.5. Justificativas.** Para cada hierarquia de especialização, a razão de ter sido modelada assim (e não como um atributo de tipo na superclasse); para cada entidade fraca e cada relacionamento de grau maior que dois presentes no esquema EER, a razão de terem sido modelados assim.
 
 ## 5. Parte II — projeto lógico
 
-**5.1. Esquema relacional.** Lista de todas as tabelas, com atributos, chaves primárias, chaves estrangeiras e restrições, e a **justificativa de cada tabela** a partir do diagrama, indicando o passo do mapeamento EER para relacional aplicado (entidade regular, entidade fraca, relacionamento 1:1, 1:N ou N:M, atributo multivalorado, relacionamento n-ário, especialização, categoria).
+**5.1. Esquema relacional.** Lista de todas as tabelas, com atributos, chaves primárias, chaves estrangeiras e restrições, e a **justificativa de cada tabela** a partir do esquema EER, indicando o passo do mapeamento EER para relacional aplicado (entidade regular, entidade fraca, relacionamento 1:1, 1:N ou N:M, atributo multivalorado, relacionamento n-ário, especialização, categoria).
 
 **5.2. Mapeamento das hierarquias.** Para cada especialização, a opção de mapeamento escolhida (tabela por subclasse, tabela única com atributo de tipo, tabela por subclasse com atributos herdados, ou outra) e a razão da escolha, em função das restrições de disjunção e participação e das consultas do domínio.
 
@@ -220,7 +222,7 @@ O projeto conceitual contém:
 
 **7.2. Consultas típicas.** Cada uma das consultas típicas do domínio escolhido (seção 2), em SQL, uma consulta por arquivo, `sql/consultas/q01.sql`, `q02.sql` e assim por diante, com uma única instrução `SELECT` por consulta, e o resultado (primeiras 20 linhas) em `resultados/`.
 
-**7.3. Consultas próprias.** Cinco consultas analíticas **diferentes** das consultas típicas, propostas pela equipe, cada uma com o enunciado em linguagem natural e o SQL (`sql/consultas/p01.sql` a `p05.sql`). Ao menos duas devem usar a hierarquia de especialização, quando o diagrama tiver uma.
+**7.3. Consultas próprias.** Cinco consultas analíticas **diferentes** das consultas típicas, propostas pela equipe, cada uma com o enunciado em linguagem natural e o SQL (`sql/consultas/p01.sql` a `p05.sql`). Ao menos duas devem usar a hierarquia de especialização, quando o esquema EER tiver uma.
 
 ## 8. Verificador automático
 
@@ -232,15 +234,15 @@ O repositório-template traz um verificador, executado por `make test`, que conf
 - os arquivos `q01` a `q09` e `p01` a `p05` existem, cada um é uma única instrução `SELECT` e retorna ao menos uma linha;
 - os arquivos obrigatórios existem (diagrama exportado, arquivo-fonte do diagrama, relatório em PDF, `dominio.txt`, `sql/03_testes_restricoes.sql`).
 
-O verificador **não avalia** o diagrama EER, as justificativas nem a adequação do esquema ao domínio. Passar no verificador é condição para a nota dos itens correspondentes, mas não a determina.
+O verificador **não avalia** a especificação de requisitos, o esquema EER, as justificativas nem a adequação do esquema ao domínio. Passar no verificador é condição para a nota dos itens correspondentes, mas não a determina.
 
 ## 9. Relatório
 
 O relatório é um arquivo PDF, `docs/relatorio.pdf`, com as seções:
 
-**9.1. Domínio e suposições.** O domínio escolhido, os nomes dos integrantes e as suposições feitas onde os requisitos eram omissos.
+**9.1. Especificação de requisitos.** O domínio escolhido, os nomes dos integrantes e a especificação detalhada dos requisitos (item 4.1), com as suposições feitas.
 
-**9.2. Projeto conceitual.** Os itens 4.1 a 4.4: listas de entidades e relacionamentos, o diagrama EER e as justificativas.
+**9.2. Projeto conceitual.** Os itens 4.2 a 4.5: listas de entidades e relacionamentos, o esquema EER (diagrama) e as justificativas.
 
 **9.3. Projeto lógico.** Os itens 5.1, 5.2 e 5.4: o esquema relacional com a justificativa de cada tabela, as opções de mapeamento das hierarquias e as restrições semânticas com seus testes.
 
@@ -296,11 +298,11 @@ git ls-remote --tags origin
 
 Tags com outro nome, branches chamados `v1.0` e repositórios sem o docente como colaborador não caracterizam entrega.
 
-**Entrega intermediária, sem nota.** Até **03/12/2026, 23:59**, a equipe pode marcar com a tag **`cp1`** uma versão com a Parte I (itens 4.1 a 4.4 no relatório e o diagrama exportado). O docente comenta os requisitos, o diagrama e as justificativas. A entrega intermediária é opcional e não vale nota.
+**Entrega intermediária, sem nota.** Até **03/12/2026, 23:59**, a equipe pode marcar com a tag **`cp1`** uma versão com a Parte I (itens 4.1 a 4.5 no relatório e o diagrama exportado). O docente comenta a especificação de requisitos, o esquema EER e as justificativas. A entrega intermediária é opcional e não vale nota.
 
 ## 12. Calendário
 
-- **20/11/2026:** publicação do enunciado e do template.
+- **21/11/2026:** publicação do enunciado e do template.
 - **27/11/2026:** prazo para comunicar domínio e integrantes no canal do trabalho.
 - **03/12/2026:** limite para dúvidas e para a entrega intermediária opcional (`cp1`). Nesta data é a aula de mapeamento ER-relacional.
 - **10/12/2026, 23:59:** entrega final (tag `v1.0`).
@@ -309,20 +311,20 @@ Tags com outro nome, branches chamados `v1.0` e repositórios sem o docente como
 
 Nota de 0 a 10:
 
-- Projeto conceitual (requisitos, diagrama e justificativas): **3,0**
+- Projeto conceitual (especificação de requisitos, esquema EER e justificativas): **3,0**
 - Projeto lógico (esquema relacional, justificativa de cada tabela, DDL e restrições semânticas): **2,5**
 - Projeto físico (índices e comparação dos planos): **1,0**
 - Consultas típicas em SQL, com resultados: **2,0**
 - Cinco consultas próprias: **1,0**
 - Organização do repositório e do relatório, rito de entrega e reprodutibilidade: **0,5**
 
-Divergência entre o diagrama e o esquema relacional (tabela sem origem no diagrama, ou elemento do diagrama sem tabela e sem justificativa) e divergência entre o relatório e o que o repositório produz ao ser executado são os itens de maior peso negativo do trabalho.
+Divergência entre o esquema EER e o esquema relacional (tabela sem origem no esquema EER, ou elemento do esquema EER sem tabela e sem justificativa) e divergência entre o relatório e o que o repositório produz ao ser executado são os itens de maior peso negativo do trabalho.
 
 ## 14. Comentários gerais
 
-As Partes I e II dependem do conteúdo de EER e de mapeamento ER-relacional, tratado nas aulas de 26/11, 01/12 e 03/12. A Parte I pode ser iniciada a partir da publicação, com o conteúdo de ER já estudado, e a entrega intermediária opcional serve a esse fim.
+As Partes I e II dependem do conteúdo de EER e de mapeamento ER-relacional, tratado nas aulas de 26/11, 01/12 e 03/12. A Parte I pode ser iniciada a partir da publicação: o primeiro passo é conhecer bem o domínio escolhido, lendo a descrição e as consultas típicas, e redigir a especificação de requisitos (item 4.1). A entrega intermediária opcional serve a esse fim.
 
-O uso de ferramentas de IA é permitido e deve ser declarado. O trabalho não avalia a produção do diagrama ou do código, e sim a capacidade de justificar cada decisão de modelagem e de relacionar o diagrama, o esquema relacional e os resultados obtidos.
+O uso de ferramentas de IA é permitido e deve ser declarado. O trabalho não avalia a produção do esquema EER ou do código, e sim a capacidade de justificar cada decisão de modelagem e de relacionar o esquema EER, o esquema relacional e os resultados obtidos.
 
 ## 15. Referências
 
